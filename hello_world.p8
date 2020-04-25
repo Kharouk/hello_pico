@@ -1,16 +1,16 @@
 pico-8 cartridge // http://www.pico-8.com
 version 22
 __lua__
--- player = {}
--- player.x = 23
--- player.y = 20
--- player.sprite = 0
--- player.speed = 2
+player = {}
+player.x = 23
+player.y = 20
+player.sprite = 0
+player.speed = 2
 
--- function move()
--- 	player.moving = true
--- 	player.sprite = 1
--- end
+function move()
+	player.moving = true
+	player.sprite = 1
+end
 
 function _init()
 	x=64
@@ -19,14 +19,15 @@ end
 
 function _update()
 	if (btn('left')) x-=1
-	-- if (btn(1)) x+=1
-	-- if (btn(2)) y-=1
+	if (btn(1)) x+=1
+	if (btn(2)) y-=1
 	if (btn(3)) y+=1
 end
 
 function _draw()
 	cls()
 	-- why the hell did this go diagonal when it was set to x,x..???
+	-- it somehow tied the x variable and thought hey i'll subtract another n-1?
 	pset(x,y,12)
 end
 __gfx__
