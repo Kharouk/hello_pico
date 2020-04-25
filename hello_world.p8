@@ -6,6 +6,7 @@ player.x = 23
 player.y = 20
 player.sprite = 0
 player.speed = 2
+normalSpeed = 3
 
 function move()
 	player.moving = true
@@ -15,20 +16,24 @@ end
 function _init()
 	x=64
 	y=64
+	isflipped=false
 end
 
 function _update()
-	if (btn('left')) x-=1
-	if (btn(1)) x+=1
-	if (btn(2)) y-=1
-	if (btn(3)) y+=1
+	if (btn('left')) x-=normalSpeed isflipped=false
+	if (btn(1)) then 
+		x+=normalSpeed
+		isflipped=true
+	end
+	if (btn(2)) y-=normalSpeed 
+	if (btn(3)) y+=normalSpeed
 end
 
 function _draw()
 	cls()
 	-- why the hell did this go diagonal when it was set to x,x..???
 	-- it somehow tied the x variable and thought hey i'll subtract another n-1?
-	pset(x,y,12)
+	spr(1, x, y, 1, 1, isflipped, false)
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
